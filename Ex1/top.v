@@ -28,24 +28,11 @@ module logicalunit(
     input [3:0] func,
     output out
     );
-    parameter x=0;
     wire   out;
          
       //Todo: add you logic here
 
-begin
+//assign out = func[2*a+b];
+assign out = (!a & !b & func[0]) | (!a & b & func[1]) | (a & !b & func[2]) | (a & b & func[3]);
 
-	if (a==0) && (b==0)
-		x = func[0];
-
-	if (a==0) && (b==1)
-		x = func[1];
-
-	if (a==1) && (b==0)
-		x = func[2];
-	else
-		x = func[3];
-	assign out = x;
-
-end
 endmodule
