@@ -22,8 +22,9 @@ module top_tb(
   reg rst;
   reg dir;
   reg enb;
+  reg err;
 	
-  wire out;
+  wire [7:0] out;
 
 //Todo: Clock generation
   initial
@@ -45,28 +46,83 @@ module top_tb(
     enb = 0;
     #(CLK_PERIOD)
     enb = 1;
-    #(CLK_PERIOD)
   end
 // check to see if direction works
-//  begin
-//    dir = 1;
-//    #(CLK_PERIOD)
-//    dir = 0;
-//    #(CLK_PERIOD)
-//    dir = 1;
-//    #(CLK_PERIOD)
-//  end
+  initial begin
+    dir = 1;
+    #(CLK_PERIOD)
+    dir = 0;
+    #(CLK_PERIOD)
+    dir = 1;
+  end
+/////////////////////////////////////////////////
 //Todo: User logic
-	
-//Todo: Finish test, check for success
+  initial begin
+    err=0;
+    count = out;
+    #(CLK_PERIOD)
+    forever
+    begin
+      
+// rst = 1, enb = 0
+      rst = 1;
+      enb = 0;
+      #(CLK_PERIOD)
+      if (out!=0)
+      begin
+        $display("***TEST FAIL! did not reset when rst = 1, enb = 0");
+        err = 1;
+      end
+// rst = 1, enb = 1
+      rst = 1;
+      enb = 1;
+      #(CLK_PERIOD)
+      if (out!=0)
+      begin
+        $display("***TEST FAIL! did not reset when rst = 1, enb = 1");
+        err = 1;
+      end
+// rst = 0, enb = 1, dir = 0
+      rst = 0;
+      enb = 1;
+      dir = 0;
+      #(CLK_PERIOD)
+      if (out!=count-1)
+      begin
+        $display("***TEST FAIL! did not decrease");
+        err = 1;
+      end
+// rst = 0, enb = 1, dir = 1
+      rst = 0;
+      enb = 1;
+      dir = 1;
+      #(CLK_PERIOD)
+      if (out!=count+1)
+      begin
+        $display("***TEST FAIL! did not increase");
+        err = 1;
+      end
 
+
+
+
+
+    end
+  end
+//Todo: Finish test, check for success
+  initial begin
+    #100
+    if (!err)
+      $display("TEST PASSED!");
+    $finish;
+  end
 //Todo: Instantiate counter module
-  logicalunit top (
+  counter top (
   .rst (rst),
   .enb (enb),
   .dir (dir),
-  .clk (clk ),
-  .count (count)
+  .clk (clk),
+  .count (out)
   );
 
 

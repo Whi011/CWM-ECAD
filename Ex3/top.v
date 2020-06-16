@@ -34,15 +34,26 @@ module counter(
   always @ (posedge clk)
   begin
   if (rst)
+    begin
     count<=0;
-  if (!rst)
+    end
+  else
+    begin
     if (enb)
+      begin
       if (dir)
+        begin
         count <= count +1;
-      if (!dir)
+        end
+      else
+        begin
         count <= count -1;
-    if (!enb)
+        end
+      end
+    else
+      begin
       count <= count;
-
+      end
+    end
   end	
 endmodule
