@@ -20,11 +20,29 @@
 
 module counter(
     //Todo: add ports 
-
+  input rst,	// reset
+  input enb,	// enable 
+  input dir,	// direction
+  input clk,	// clock
+  output reg [7:0] count	// counter out
     );
                     
     //Todo: add registers and wires, if needed
+  //wire count;
 
     //Todo: add user logic
-      
+  always @ (posedge clk)
+  begin
+  if (rst)
+    count<=0;
+  if (!rst)
+    if (enb)
+      if (dir)
+        count <= count +1;
+      if (!dir)
+        count <= count -1;
+    if (!enb)
+      count <= count;
+
+  end	
 endmodule
