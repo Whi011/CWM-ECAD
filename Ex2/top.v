@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Exercise #2 
-// Student Name:
-// Date: 
+// Student Name: Roladn Whiteley
+// Date: 16-06-2020
 //
 //  Description: In this exercise, you need to design a multiplexer, where the  
 //  output acts according to the following truth table:
@@ -22,26 +22,19 @@
 
 module mux(
     //Todo: define inputs here
-	input A,
-	input B,
+	input a,
+	input b,
 	input sel,
 	output out
     );
     
     //Todo: define registers and wires here
-	wire = out
+	wire out;
 	
 
-	parameter CLK_PERIOD = 10; //set the clock period
-		initial
-			begin
-				parameter clk = 1'b0;
-				forever
-					#(CLK_PERIOD/2) clk=~clk; //happens every delay of CLK_PERIOD/2
-			end
 
     //Todo: define your logic here    
-	always @(posedge clk) begin
-		assign out = (a & !sel) | (b & sel)             
-      	end
+	assign #5 out = (a & !sel) | (b & sel);             
+
+
 endmodule
