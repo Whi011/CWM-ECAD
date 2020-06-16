@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Test bench for Exercise #3 - Up/Down counter
-// Student Name:
-// Date: 
+// Student Name: Roland Whiteley
+// Date: 16-06-2020
 //
 // Description: A testbench module to test Ex3 - counter
 // Guidance: start with simple tests of the module (how should it react to each 
