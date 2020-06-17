@@ -62,7 +62,7 @@ module top_tb(
       end
      
      //The instantiation of the user's module
-     logicalunit top (
+     counter top (
      .a (ab[1]),
      .b (ab[0]),
      .func (func),
