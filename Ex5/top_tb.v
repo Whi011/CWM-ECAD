@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Test bench for Exercise #5 - Traffic Lights
-// Student Name:
-// Date: 
+// Student Name: Roland Whiteley
+// Date: 17-06-2020
 //
 // Description: A testbench module to test Ex5 - Traffic Lights
 // You need to write the whole file

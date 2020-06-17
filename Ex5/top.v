@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Exercise #5 
-// Student Name:
-// Date: 
+// Student Name: Roland Whiteley
+// Date: 17-06-2020
 //
 //  Description: In this exercise, you need to implement a UK traffic lights 
 //  sequencing system. 
