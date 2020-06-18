@@ -4,7 +4,7 @@
 // Date: 17-06-2020
 //
 //  Description: In this exercise, you need to design an electronic dice, following
-//  the diagram provided in the exercises documentation. The dice rolls as long as
+//  the diagram provided in the exercises documentation. The dice throws as long as
 //  a button is pressed, and stops when it is released. 
 //
 //  inputs:
@@ -22,21 +22,27 @@ module dice(
   input clk,	// reset
   input rst,	// enable 
   input button,	// direction
-  output wire [2:0] throw	// counter out
+  output [2:0] throw	// counter out
     );
+
+
+  initial begin
+  assign throw =3'b000;
+  end
+
 
   always @ (posedge clk)
   begin
 // if rst set throw to 0
   if (rst)
     begin
-    throw<=0;
+    assign throw=0;
     end
   else
     begin
     if (button)
       begin
-      throw<=(throw==3'b000)?3'b001:
+      assign throw=(throw==3'b000)?3'b001:
              (throw==3'b001)?3'b010:
              (throw==3'b010)?3'b011:
              (throw==3'b011)?3'b100:
@@ -47,10 +53,12 @@ module dice(
       end
     else
       begin
-      throw<=(throw==3'b000)?3'b001:
+      assign throw=(throw==3'b000)?3'b001:
              (throw==3'b111)?3'b001:
              throw;
       end
     end
+
+
   end
 endmodule
