@@ -26,24 +26,35 @@ module multi(
   input clk,
   input button,
   input sel,
-  
-  output [2:0] result
+
+  output wire [2:0] result
   );
 
+  wire [2:0] throw;
+  wire red;
+  wire amb;
+  wire gre;
+  wire [2:0] state;
 
-    always @ (posedge clk)
-    begin
-      if (sel)
-        begin
-        lights(clk,result[2],result[1],result[0]);
-        end
-      else
-        begin
-        dice(clk,rst,button,result);
-        end
-    end
+  traffic traffic (
+    .clk (clk),
+    .red (red),
+    .amb (amb),
+    .gre (gre)
+    );
+
+  dice dice (
+    .clk (clk),
+    .rst (rst),
+    .button (button),
+    .throw (throw)
+    );
 
 
+  assign state[2] = red;
+  assign state[1] = amb;
+  assign state[0] = gre;
 
+  assign result = (sel==0)?throw : state;
 
 endmodule

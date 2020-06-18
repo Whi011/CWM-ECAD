@@ -21,7 +21,10 @@ module top_tb(
     reg clk;
     reg button;
     reg sel;
-    reg [2:0] result;
+    reg old_sel;
+    wire [2:0] result;
+    reg [2:0] new_result;
+    reg [2:0] old_result;
     reg err;
 
     //Wires
@@ -52,21 +55,9 @@ module top_tb(
      .rst (rst),
      .clk (clk),
      .button (button),
-     .sel (sel)
+     .sel (sel),
+     .result (result)
      );
 
-     lights top5 (
-     .clk (clk),
-     .red (result[2]),
-     .amb (result[1]),
-     .gre (result[0])
-     );
-
-     dice top4 (
-     .clk (clk),
-     .rst (rst),
-     .button (button),
-     .throw (result)
-     );
      
 endmodule
