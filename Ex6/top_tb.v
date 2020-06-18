@@ -21,7 +21,7 @@ module top_tb(
     reg clk;
     reg button;
     reg sel;
-    reg result;
+    reg [2:0] result;
     reg err;
 
     //Wires

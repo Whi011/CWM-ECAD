@@ -29,9 +29,6 @@ module multi(
   
   output [2:0] result
   );
-  reg red;
-  reg amb;
-  reg gre;
 
 
     always @ (posedge clk)
