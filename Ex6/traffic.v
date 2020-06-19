@@ -29,7 +29,7 @@ module traffic(
   end
 
   always @ (posedge clk)
-    begin
+  begin
   // state 110 == red=1, amb=1, gre=0
     state<=(state==3'b100)?3'b110:
            (state==3'b110)?3'b001:
@@ -39,5 +39,6 @@ module traffic(
     red<=state[2];
     amb<=state[1];
     gre<=state[0];
-    end
+  end
+
 endmodule

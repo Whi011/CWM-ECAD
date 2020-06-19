@@ -58,7 +58,5 @@ module dice(
              throw;
       end
     end
-
-
   end
 endmodule

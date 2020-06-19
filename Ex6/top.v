@@ -48,5 +48,5 @@ module multi(
     );
 
   assign result = (sel==0)?throw : light;
-
+ 
 endmodule
