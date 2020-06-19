@@ -43,10 +43,12 @@ module top_tb(
     begin
       err=0;
       rst=0;//dice
-      button=0;//dice
-      sel=0; // 0:dice 1:lights
-      #(CLK_PERIOD)
-      $display("***FAILED! result = %b***",result);
+      button=1;//dice
+      sel=1; // 0:dice 1:lights
+      begin forever
+        #(CLK_PERIOD)
+        $display("result = %b",result);
+      end
 //The instantiation of the user's module
     end
 

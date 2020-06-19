@@ -31,16 +31,13 @@ module multi(
   );
 
   wire [2:0] throw;
-  wire red;
-  wire amb;
-  wire gre;
-  wire [2:0] state;
+  wire [2:0] light;
 
   traffic traffic (
     .clk (clk),
-    .red (red),
-    .amb (amb),
-    .gre (gre)
+    .red (light[2]),
+    .amb (light[1]),
+    .gre (light[0])
     );
 
   dice dice (
@@ -50,11 +47,6 @@ module multi(
     .throw (throw)
     );
 
-
-  assign state[2] = red;
-  assign state[1] = amb;
-  assign state[0] = gre;
-
-  assign result = (sel==0)?throw : state;
+  assign result = (sel==0)?throw : light;
 
 endmodule

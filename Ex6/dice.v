@@ -22,12 +22,12 @@ module dice(
   input clk,	// reset
   input rst,	// enable 
   input button,	// direction
-  output [2:0] throw	// counter out
+  output reg [2:0] throw	// counter out
     );
 
 
   initial begin
-  assign throw =3'b000;
+  throw<=3'b000;
   end
 
 
@@ -36,13 +36,13 @@ module dice(
 // if rst set throw to 0
   if (rst)
     begin
-    assign throw=0;
+    throw<=0;
     end
   else
     begin
     if (button)
       begin
-      assign throw=(throw==3'b000)?3'b001:
+      throw<=(throw==3'b000)?3'b001:
              (throw==3'b001)?3'b010:
              (throw==3'b010)?3'b011:
              (throw==3'b011)?3'b100:
@@ -53,7 +53,7 @@ module dice(
       end
     else
       begin
-      assign throw=(throw==3'b000)?3'b001:
+      throw<=(throw==3'b000)?3'b001:
              (throw==3'b111)?3'b001:
              throw;
       end

@@ -17,9 +17,9 @@
 module traffic(
     //Todo: add ports 
   input clk,	// clock
-  output wire red,// counter out
-  output wire amb,// counter out
-  output wire gre// counter out
+  output reg red,// counter out
+  output reg amb,// counter out
+  output reg gre// counter out
     );
 
   reg [2:0] state;
@@ -36,8 +36,8 @@ module traffic(
            (state==3'b001)?3'b010:
            (state==3'b010)?3'b100:
            3'b100;
-    assign red=state[2];
-    assign amb=state[1];
-    assign gre=state[0];
+    red<=state[2];
+    amb<=state[1];
+    gre<=state[0];
     end
 endmodule
